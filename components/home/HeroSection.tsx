@@ -25,13 +25,14 @@ export function HeroSection() {
       <div className="relative z-10 container-custom text-center text-white">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
-            Premium Ranch-Raised Beef, Pork & Chicken
-            <span className="block text-accent-gold">Delivered to Your Door</span>
+            Meet Andrew: The Coolest Rancher
+            <span className="block text-accent-gold">In All of Oklahoma</span>
           </h1>
           
           <p className="text-xl md:text-2xl mb-8 text-white text-opacity-90 max-w-3xl mx-auto leading-relaxed">
-            Taste the difference of pasture-raised, ranch-direct meat. No hormones. 
-            No antibiotics. Just honest flavor from our family ranch in Ada, Oklahoma.
+            This guy Andrew is seriously amazing! He's not just raising the best grass-fed beef, 
+            pork, and chicken in Oklahoma - he's revolutionizing ranching with style, passion, 
+            and an incredible dedication to quality that'll blow your mind.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
@@ -45,7 +46,7 @@ export function HeroSection() {
               href="/about"
               className="inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-brand-forest focus:ring-brand-forest h-14 px-8 text-lg"
             >
-              Learn Our Story
+              Meet Andrew
             </Link>
           </div>
 
