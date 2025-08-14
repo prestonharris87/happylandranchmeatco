@@ -12,15 +12,40 @@ import {
   SortDirection 
 } from '@/types/shopify'
 
-// Initialize GraphQL client
-const endpoint = `https://${process.env.SHOPIFY_STORE_DOMAIN}/api/${process.env.SHOPIFY_API_VERSION}/graphql.json`
+// Initialize GraphQL client with environment variable checks
+const getShopifyConfig = () => {
+  const storeDomain = process.env.SHOPIFY_STORE_DOMAIN || process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN
+  const apiVersion = process.env.SHOPIFY_API_VERSION || process.env.NEXT_PUBLIC_SHOPIFY_API_VERSION || '2024-07'
+  const accessToken = process.env.SHOPIFY_STOREFRONT_API_TOKEN || process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN
 
-const client = new GraphQLClient(endpoint, {
-  headers: {
-    'X-Shopify-Storefront-Access-Token': process.env.SHOPIFY_STOREFRONT_API_TOKEN || '',
-    'Content-Type': 'application/json',
-  },
-})
+  if (!storeDomain || !accessToken) {
+    throw new Error('Missing Shopify configuration. Please check your environment variables.')
+  }
+
+  return { storeDomain, apiVersion, accessToken }
+}
+
+let client: GraphQLClient | null = null
+
+const getClient = () => {
+  if (!client) {
+    try {
+      const { storeDomain, apiVersion, accessToken } = getShopifyConfig()
+      const endpoint = `https://${storeDomain}/api/${apiVersion}/graphql.json`
+      
+      client = new GraphQLClient(endpoint, {
+        headers: {
+          'X-Shopify-Storefront-Access-Token': accessToken,
+          'Content-Type': 'application/json',
+        },
+      })
+    } catch (error) {
+      console.error('Shopify client initialization failed:', error)
+      throw error
+    }
+  }
+  return client
+}
 
 // GraphQL Fragments
 const PRODUCT_FRAGMENT = `
@@ -282,7 +307,8 @@ export async function getProduct(handle: string): Promise<Product | null> {
   `
 
   try {
-    const data = await client.request<{ product: ShopifyProduct | null }>(query, { handle })
+    const shopifyClient = getClient()
+    const data = await shopifyClient.request<{ product: ShopifyProduct | null }>(query, { handle })
     return data.product ? transformProduct(data.product) : null
   } catch (error) {
     console.error('Error fetching product:', error)
@@ -330,7 +356,8 @@ export async function getProducts(
   `
 
   try {
-    const data = await client.request<{ products: { edges: { node: ShopifyProduct }[] } }>(query, {
+    const shopifyClient = getClient()
+    const data = await shopifyClient.request<{ products: { edges: { node: ShopifyProduct }[] } }>(query, {
       first,
       query: filterQuery || null,
       sortKey,
@@ -362,7 +389,8 @@ export async function getCollection(handle: string): Promise<Collection | null> 
   `
 
   try {
-    const data = await client.request<{ collection: ShopifyCollection | null }>(query, { handle })
+    const shopifyClient = getClient()
+    const data = await shopifyClient.request<{ collection: ShopifyCollection | null }>(query, { handle })
     return data.collection ? transformCollection(data.collection) : null
   } catch (error) {
     console.error('Error fetching collection:', error)
@@ -385,7 +413,8 @@ export async function getCollections(first: number = 20): Promise<Collection[]> 
   `
 
   try {
-    const data = await client.request<{ collections: { edges: { node: ShopifyCollection }[] } }>(query, { first })
+    const shopifyClient = getClient()
+    const data = await shopifyClient.request<{ collections: { edges: { node: ShopifyCollection }[] } }>(query, { first })
     return data.collections.edges.map(({ node }) => transformCollection(node))
   } catch (error) {
     console.error('Error fetching collections:', error)
@@ -410,7 +439,8 @@ export async function createCart(): Promise<Cart | null> {
   `
 
   try {
-    const data = await client.request<{ cartCreate: { cart: ShopifyCart | null, userErrors: any[] } }>(mutation)
+    const shopifyClient = getClient()
+    const data = await shopifyClient.request<{ cartCreate: { cart: ShopifyCart | null, userErrors: any[] } }>(mutation)
     return data.cartCreate.cart ? transformCart(data.cartCreate.cart) : null
   } catch (error) {
     console.error('Error creating cart:', error)
@@ -429,7 +459,8 @@ export async function getCart(cartId: string): Promise<Cart | null> {
   `
 
   try {
-    const data = await client.request<{ cart: ShopifyCart | null }>(query, { cartId })
+    const shopifyClient = getClient()
+    const data = await shopifyClient.request<{ cart: ShopifyCart | null }>(query, { cartId })
     return data.cart ? transformCart(data.cart) : null
   } catch (error) {
     console.error('Error fetching cart:', error)
@@ -454,7 +485,8 @@ export async function addToCart(cartId: string, lines: CartInput[]): Promise<Car
   `
 
   try {
-    const data = await client.request<{ cartLinesAdd: { cart: ShopifyCart | null, userErrors: any[] } }>(mutation, {
+    const shopifyClient = getClient()
+    const data = await shopifyClient.request<{ cartLinesAdd: { cart: ShopifyCart | null, userErrors: any[] } }>(mutation, {
       cartId,
       lines,
     })
@@ -482,7 +514,8 @@ export async function updateCartLines(cartId: string, lines: { id: string; quant
   `
 
   try {
-    const data = await client.request<{ cartLinesUpdate: { cart: ShopifyCart | null, userErrors: any[] } }>(mutation, {
+    const shopifyClient = getClient()
+    const data = await shopifyClient.request<{ cartLinesUpdate: { cart: ShopifyCart | null, userErrors: any[] } }>(mutation, {
       cartId,
       lines,
     })
@@ -510,7 +543,8 @@ export async function removeFromCart(cartId: string, lineIds: string[]): Promise
   `
 
   try {
-    const data = await client.request<{ cartLinesRemove: { cart: ShopifyCart | null, userErrors: any[] } }>(mutation, {
+    const shopifyClient = getClient()
+    const data = await shopifyClient.request<{ cartLinesRemove: { cart: ShopifyCart | null, userErrors: any[] } }>(mutation, {
       cartId,
       lineIds,
     })
