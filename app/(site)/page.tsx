@@ -11,7 +11,8 @@ import { MeetTheRancher } from '@/components/home/MeetTheRancher'
 import { RecipeSpotlight } from '@/components/home/RecipeSpotlight'
 import { ReviewsCarousel } from '@/components/home/ReviewsCarousel'
 import { EmailCapture } from '@/components/home/EmailCapture'
-import { ProductGrid, ProductCardSkeleton } from '@/components/ProductCard'
+import { ProductGrid } from '@/components/ProductCard'
+import { ProductCardSkeleton } from '@/components/ui/Skeleton'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Premium Ranch-Raised Beef, Pork & Chicken Delivered to Your Door',

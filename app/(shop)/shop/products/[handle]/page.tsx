@@ -7,7 +7,7 @@ import { ProductDetails } from '@/components/product/ProductDetails'
 import { ProductTabs } from '@/components/product/ProductTabs'
 import { CrossSell } from '@/components/product/CrossSell'
 import { ProductReviews } from '@/components/product/ProductReviews'
-import { ProductCardSkeleton } from '@/components/ProductCard'
+import { ProductCardSkeleton } from '@/components/ui/Skeleton'
 
 interface ProductPageProps {
   params: {
