@@ -17,7 +17,8 @@ const blogPosts = [
     image: placeholderImage('Cattle grazing in green pasture', 400, 250),
     date: '2024-01-15',
     category: 'Sustainability',
-    readTime: '5 min read'
+    readTime: '5 min read',
+    href: '/blog/grass-fed-beef-guide'
   },
   {
     title: 'Seasonal Cooking: Winter Comfort Foods',
@@ -25,7 +26,8 @@ const blogPosts = [
     image: placeholderImage('Winter beef stew in pot', 400, 250),
     date: '2024-01-10',
     category: 'Cooking',
-    readTime: '7 min read'
+    readTime: '7 min read',
+    href: '/blog/winter-comfort-foods'
   },
   {
     title: 'Behind the Scenes: A Day in Ranch Life',
@@ -33,7 +35,8 @@ const blogPosts = [
     image: placeholderImage('Rancher working with cattle at sunrise', 400, 250),
     date: '2024-01-05',
     category: 'Ranch Life',
-    readTime: '4 min read'
+    readTime: '4 min read',
+    href: '/blog/ranch-life-behind-scenes'
   },
   {
     title: 'The Perfect Steak: Temperature Guide',
@@ -41,7 +44,8 @@ const blogPosts = [
     image: placeholderImage('Perfect medium-rare steak on cutting board', 400, 250),
     date: '2023-12-28',
     category: 'Cooking',
-    readTime: '6 min read'
+    readTime: '6 min read',
+    href: '/blog/perfect-steak-temperature-guide'
   },
   {
     title: 'Regenerative Agriculture: Healing the Land',
@@ -49,7 +53,8 @@ const blogPosts = [
     image: placeholderImage('Healthy grassland with diverse plants', 400, 250),
     date: '2023-12-20',
     category: 'Sustainability',
-    readTime: '8 min read'
+    readTime: '8 min read',
+    href: '/blog/regenerative-agriculture'
   },
   {
     title: 'Holiday Feast Planning Guide',
@@ -57,7 +62,8 @@ const blogPosts = [
     image: placeholderImage('Holiday table with roast and sides', 400, 250),
     date: '2023-12-15',
     category: 'Cooking',
-    readTime: '5 min read'
+    readTime: '5 min read',
+    href: '/blog/holiday-feast-planning'
   }
 ]
 
@@ -139,9 +145,9 @@ export default function BlogPage() {
                       day: 'numeric'
                     })}
                   </span>
-                  <button className="text-brand-forest font-medium hover:text-accent-clay transition-colors">
+                  <Link href={blogPosts[0].href} className="text-brand-forest font-medium hover:text-accent-clay transition-colors">
                     Read More →
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -150,7 +156,7 @@ export default function BlogPage() {
           {/* Blog Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.slice(1).map((post, index) => (
-              <article key={index} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+              <Link key={index} href={post.href} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 block">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={post.image.src}
@@ -168,7 +174,7 @@ export default function BlogPage() {
                     <span>{post.readTime}</span>
                   </div>
                   
-                  <h3 className="text-xl font-semibold text-ink mb-3 hover:text-brand-forest transition-colors cursor-pointer">
+                  <h3 className="text-xl font-semibold text-ink mb-3 hover:text-brand-forest transition-colors">
                     {post.title}
                   </h3>
                   <p className="text-gray-600 mb-4">
@@ -183,12 +189,12 @@ export default function BlogPage() {
                         day: 'numeric'
                       })}
                     </span>
-                    <button className="text-brand-forest font-medium hover:text-accent-clay transition-colors">
+                    <span className="text-brand-forest font-medium hover:text-accent-clay transition-colors">
                       Read More →
-                    </button>
+                    </span>
                   </div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
 

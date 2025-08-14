@@ -48,7 +48,8 @@ const featuredRecipes = [
     image: placeholderImage('Perfectly cooked ribeye steak', 300, 200),
     cookTime: '15 min',
     difficulty: 'Easy',
-    category: 'beef'
+    category: 'beef',
+    href: '/recipes/perfect-grass-fed-ribeye'
   },
   {
     title: 'Herb-Crusted Pork Tenderloin',
@@ -56,7 +57,8 @@ const featuredRecipes = [
     image: placeholderImage('Herb-crusted pork tenderloin', 300, 200),
     cookTime: '45 min',
     difficulty: 'Medium',
-    category: 'pork'
+    category: 'pork',
+    href: '/recipes/herb-crusted-pork-tenderloin'
   },
   {
     title: 'Classic Roast Chicken',
@@ -64,7 +66,8 @@ const featuredRecipes = [
     image: placeholderImage('Golden roast chicken', 300, 200),
     cookTime: '1 hour',
     difficulty: 'Easy',
-    category: 'chicken'
+    category: 'chicken',
+    href: '/recipes/classic-roast-chicken'
   }
 ]
 
@@ -138,7 +141,7 @@ export default function RecipesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredRecipes.map((recipe, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+              <Link key={index} href={recipe.href} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 block">
                 <div className="relative aspect-[3/2] overflow-hidden">
                   <Image
                     src={recipe.image.src}
@@ -166,12 +169,12 @@ export default function RecipesPage() {
                     <span className="text-sm text-accent-clay font-medium uppercase tracking-wide">
                       {recipe.category}
                     </span>
-                    <button className="text-brand-forest font-medium hover:text-accent-clay transition-colors">
+                    <span className="text-brand-forest font-medium hover:text-accent-clay transition-colors">
                       View Recipe →
-                    </button>
+                    </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
