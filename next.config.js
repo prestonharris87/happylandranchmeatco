@@ -3,6 +3,12 @@ const nextConfig = {
   images: {
     domains: ['cdn.shopify.com', 'via.placeholder.com'],
     formats: ['image/webp', 'image/avif'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.vercel.app',
+      },
+    ],
   },
   async headers() {
     return [

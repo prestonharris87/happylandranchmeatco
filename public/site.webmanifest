@@ -1,0 +1,21 @@
+{
+  "name": "Happyland Ranch Meat Co.",
+  "short_name": "Happyland Ranch",
+  "description": "Premium grass-fed beef, pasture-raised pork, and free-range chicken delivered fresh from our Oklahoma ranch.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F3EC",
+  "theme_color": "#2F4F3E",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
