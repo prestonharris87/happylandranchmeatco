@@ -22,7 +22,7 @@ export function BuyBox({ product, selectedVariant, onVariantChange }: BuyBoxProp
 
   const hasMultipleVariants = product.variants.length > 1
   const hasCompareAtPrice = selectedVariant.compareAtPrice
-  const savingsAmount = hasCompareAtPrice 
+  const savingsAmount = hasCompareAtPrice && selectedVariant.compareAtPrice
     ? parseFloat(selectedVariant.compareAtPrice.amount) - parseFloat(selectedVariant.price.amount)
     : 0
 
@@ -100,11 +100,11 @@ export function BuyBox({ product, selectedVariant, onVariantChange }: BuyBoxProp
           <span className="text-3xl font-bold text-brand-forest">
             {formatMoney(selectedVariant.price.amount, selectedVariant.price.currencyCode)}
           </span>
-          {hasCompareAtPrice && (
-            <>
-              <span className="text-xl text-gray-500 line-through">
-                {formatMoney(selectedVariant.compareAtPrice.amount, selectedVariant.compareAtPrice.currencyCode)}
-              </span>
+                        {hasCompareAtPrice && selectedVariant.compareAtPrice && (
+                <>
+                  <span className="text-xl text-gray-500 line-through">
+                    {formatMoney(selectedVariant.compareAtPrice.amount, selectedVariant.compareAtPrice.currencyCode)}
+                  </span>
               <Badge variant="error">
                 Save ${savingsAmount.toFixed(2)}
               </Badge>

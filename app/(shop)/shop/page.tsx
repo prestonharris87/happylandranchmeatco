@@ -76,7 +76,9 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
           {/* Filters Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-24">
-              <ShopFilters collections={collections} />
+              <Suspense fallback={<div className="animate-pulse bg-gray-200 h-96 rounded-lg" />}>
+                <ShopFilters collections={collections} />
+              </Suspense>
             </div>
           </div>
 

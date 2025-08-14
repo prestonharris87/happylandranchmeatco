@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Collection } from '@/types/shopify'
 import { Button } from '@/components/ui/Button'
-import { placeholders } from '@/lib/images'
+import { getImageProps } from '@/lib/images'
 
 interface FeaturedCollectionsProps {
   collections: Collection[]
@@ -20,21 +20,21 @@ const fallbackCollections = [
     handle: 'beef',
     title: 'Beef',
     description: collectionDescriptions.beef,
-    image: placeholders.collection('Premium grass-fed beef cuts'),
+    image: null,
   },
   {
     id: 'pork',
     handle: 'pork', 
     title: 'Pork',
     description: collectionDescriptions.pork,
-    image: placeholders.collection('Heritage pork chops and cuts'),
+    image: null,
   },
   {
     id: 'chicken',
     handle: 'chicken',
     title: 'Chicken',
     description: collectionDescriptions.chicken,
-    image: placeholders.collection('Pasture-raised chicken'),
+    image: null,
   }
 ]
 
@@ -55,7 +55,7 @@ export function FeaturedCollections({ collections }: FeaturedCollectionsProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {displayCollections.map((collection) => {
-            const image = collection.image || placeholders.collection(collection.title)
+            const image = getImageProps(collection.image, collection.title)
             const description = collectionDescriptions[collection.handle as keyof typeof collectionDescriptions] || collection.description
 
             return (

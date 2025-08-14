@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { X, ShoppingBag, Plus, Minus, Trash2 } from 'lucide-react'
 import { useCart, formatCartTotal, getCartShippingInfo } from '@/lib/cart'
 import { formatMoney } from '@/lib/utils'
-import { placeholders } from '@/lib/images'
+import { getImageProps } from '@/lib/images'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { cn } from '@/lib/utils'
@@ -128,7 +128,7 @@ export function CartSheet({ isOpen, onClose }: CartSheetProps) {
               <div className="flex-1 overflow-y-auto p-4">
                 <div className="space-y-4">
                   {cart?.lines.map((line) => {
-                    const image = line.merchandise.image || placeholders.product(line.merchandise.title)
+                    const image = getImageProps(line.merchandise.image, line.merchandise.title)
                     const lineTotal = parseFloat(line.cost.totalAmount.amount)
 
                     return (

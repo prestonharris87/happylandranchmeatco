@@ -9,7 +9,7 @@ export interface SEOProps {
   canonical?: string
   noIndex?: boolean
   keywords?: string[]
-  type?: 'website' | 'article' | 'product'
+  type?: 'website' | 'article'
   publishedTime?: string
   modifiedTime?: string
   authors?: string[]
@@ -106,7 +106,7 @@ export function generateProductMetadata(product: Product): Metadata {
     image,
     canonical,
     keywords,
-    type: 'product',
+    type: 'article',
     publishedTime: product.publishedAt,
     modifiedTime: product.updatedAt,
   })

@@ -25,6 +25,11 @@ export interface ShopifyProductVariant {
   compareAtPrice?: ShopifyMoney
   image?: ShopifyImage
   quantityAvailable?: number
+  product?: {
+    id: string
+    handle: string
+    title: string
+  }
 }
 
 export interface ShopifyProduct {
@@ -166,6 +171,11 @@ export interface ProductVariant {
   compareAtPrice?: ShopifyMoney
   image?: ShopifyImage
   quantityAvailable?: number
+  product?: {
+    id: string
+    handle: string
+    title: string
+  }
 }
 
 export interface Collection {

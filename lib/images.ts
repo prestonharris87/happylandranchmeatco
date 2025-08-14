@@ -1,4 +1,25 @@
 // Placeholder image system for development and fallbacks
+import { ShopifyImage } from '@/types/shopify'
+
+// Helper function to get image properties from either Shopify or placeholder images
+export function getImageProps(shopifyImage: ShopifyImage | null | undefined, fallbackAlt: string) {
+  if (shopifyImage) {
+    return {
+      src: shopifyImage.url,
+      alt: shopifyImage.altText || fallbackAlt,
+      width: shopifyImage.width,
+      height: shopifyImage.height,
+    }
+  }
+  
+  const placeholder = placeholderImage(fallbackAlt)
+  return {
+    src: placeholder.src,
+    alt: placeholder.alt,
+    width: placeholder.width,
+    height: placeholder.height,
+  }
+}
 
 export interface PlaceholderOptions {
   width?: number

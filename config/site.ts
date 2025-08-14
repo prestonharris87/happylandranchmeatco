@@ -33,6 +33,7 @@ export const siteConfig = {
     }
   },
   shipping: {
+    freeShipping: 149,
     freeThreshold: 149,
     perishableThreshold: 149,
     perishableFee: 15,

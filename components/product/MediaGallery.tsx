@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight, Expand } from 'lucide-react'
 import { Product, ProductVariant } from '@/types/shopify'
-import { placeholders } from '@/lib/images'
+import { getImageProps } from '@/lib/images'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 
@@ -18,27 +18,28 @@ export function MediaGallery({ product, selectedVariant }: MediaGalleryProps) {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false)
 
   // Get images - prioritize variant image, then product images
-  const images = product.images.length > 0 
-    ? product.images 
-    : [placeholders.product(product.title)]
+  const images = product.images.length > 0 ? product.images : []
 
   // If variant has a specific image, show it first
   const variantImage = selectedVariant.image
   const displayImages = variantImage 
-    ? [variantImage, ...images.filter(img => img.id !== variantImage.id)]
+    ? [variantImage, ...images.filter(img => img.url !== variantImage.url)]
     : images
 
-  const currentImage = displayImages[currentImageIndex]
+  // Add fallback if no images
+  const finalImages = displayImages.length > 0 ? displayImages : [null]
+  const currentShopifyImage = finalImages[currentImageIndex]
+  const currentImage = getImageProps(currentShopifyImage, product.title)
 
   const goToPrevious = () => {
     setCurrentImageIndex(
-      currentImageIndex === 0 ? displayImages.length - 1 : currentImageIndex - 1
+      currentImageIndex === 0 ? finalImages.length - 1 : currentImageIndex - 1
     )
   }
 
   const goToNext = () => {
     setCurrentImageIndex(
-      currentImageIndex === displayImages.length - 1 ? 0 : currentImageIndex + 1
+      currentImageIndex === finalImages.length - 1 ? 0 : currentImageIndex + 1
     )
   }
 
@@ -85,7 +86,7 @@ export function MediaGallery({ product, selectedVariant }: MediaGalleryProps) {
         </button>
 
         {/* Navigation Arrows */}
-        {displayImages.length > 1 && (
+        {finalImages.length > 1 && (
           <>
             <Button
               variant="ghost"
@@ -109,35 +110,38 @@ export function MediaGallery({ product, selectedVariant }: MediaGalleryProps) {
         )}
 
         {/* Image Counter */}
-        {displayImages.length > 1 && (
+        {finalImages.length > 1 && (
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-3 py-1 bg-black bg-opacity-50 text-white text-sm rounded-full">
-            {currentImageIndex + 1} / {displayImages.length}
+            {currentImageIndex + 1} / {finalImages.length}
           </div>
         )}
       </div>
 
       {/* Thumbnail Gallery */}
-      {displayImages.length > 1 && (
+      {finalImages.length > 1 && (
         <div className="grid grid-cols-4 gap-2">
-          {displayImages.slice(0, 4).map((image, index) => (
-            <button
-              key={image.id || index}
-              onClick={() => goToImage(index)}
-              className={`relative aspect-square bg-gray-100 rounded-md overflow-hidden transition-all duration-200 ${
-                index === currentImageIndex
-                  ? 'ring-2 ring-brand-forest ring-offset-2'
-                  : 'hover:opacity-80'
-              }`}
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                className="object-cover"
-                sizes="150px"
-              />
-            </button>
-          ))}
+          {finalImages.slice(0, 4).map((shopifyImage, index) => {
+            const thumbImage = getImageProps(shopifyImage, product.title)
+            return (
+              <button
+                key={shopifyImage?.url || index}
+                onClick={() => goToImage(index)}
+                className={`relative aspect-square bg-gray-100 rounded-md overflow-hidden transition-all duration-200 ${
+                  index === currentImageIndex
+                    ? 'ring-2 ring-brand-forest ring-offset-2'
+                    : 'hover:opacity-80'
+                }`}
+              >
+                <Image
+                  src={thumbImage.src}
+                  alt={thumbImage.alt}
+                  fill
+                  className="object-cover"
+                  sizes="150px"
+                />
+              </button>
+            )
+          })}
         </div>
       )}
 
@@ -169,7 +173,7 @@ export function MediaGallery({ product, selectedVariant }: MediaGalleryProps) {
             </button>
 
             {/* Navigation in Lightbox */}
-            {displayImages.length > 1 && (
+            {finalImages.length > 1 && (
               <>
                 <button
                   onClick={(e) => {

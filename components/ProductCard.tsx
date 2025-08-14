@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Product } from '@/types/shopify'
 import { formatMoneyRange } from '@/lib/utils'
-import { placeholders } from '@/lib/images'
+import { getImageProps } from '@/lib/images'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { AddToCartButton } from '@/components/AddToCartButton'
@@ -21,7 +21,7 @@ export function ProductCard({
   showQuickAdd = false,
   className = '' 
 }: ProductCardProps) {
-  const primaryImage = product.images[0] || placeholders.product(product.title)
+  const primaryImage = getImageProps(product.images[0], product.title)
   const defaultVariant = product.variants[0]
   
   const priceDisplay = product.variants.length === 1 

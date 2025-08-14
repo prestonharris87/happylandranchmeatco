@@ -87,7 +87,7 @@ export function ShopFilters({ collections }: ShopFiltersProps) {
       if (filterValue) {
         if (Array.isArray(filterValue)) {
           filterValue.forEach(v => params.append(filterKey, v))
-        } else if (filterValue !== '' && filterValue !== false) {
+        } else if (filterValue !== '' && typeof filterValue !== 'boolean') {
           params.set(filterKey, filterValue.toString())
         }
       }

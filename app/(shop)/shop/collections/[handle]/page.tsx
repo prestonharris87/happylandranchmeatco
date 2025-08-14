@@ -6,7 +6,7 @@ import { getCollection } from '@/lib/shopify'
 import { generateCollectionMetadata, generateBreadcrumbJsonLd } from '@/lib/seo'
 import { ProductGrid } from '@/components/ProductCard'
 import { ProductCardSkeleton } from '@/components/ui/Skeleton'
-import { placeholders } from '@/lib/images'
+import { getImageProps } from '@/lib/images'
 import { ShopFilters } from '@/components/shop/ShopFilters'
 
 interface CollectionPageProps {
@@ -56,7 +56,7 @@ export default async function CollectionPage({ params, searchParams }: Collectio
     { name: collection.title, url: `/shop/collections/${collection.handle}` },
   ]
 
-  const headerImage = collection.image || placeholders.collection(collection.title)
+  const headerImage = getImageProps(collection.image, collection.title)
 
   return (
     <>
