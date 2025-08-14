@@ -110,7 +110,10 @@ export default function CartPage() {
                 
                 <div className="divide-y divide-gray-200">
                   {cart?.lines.map((line) => {
-                    const image = line.merchandise.image || placeholders.product(line.merchandise.title)
+                    const shopifyImage = line.merchandise.image
+                    const placeholderImage = placeholders.product(line.merchandise.title)
+                    const imageSrc = shopifyImage ? shopifyImage.url : placeholderImage.src
+                    const imageAlt = shopifyImage ? shopifyImage.altText || line.merchandise.title : placeholderImage.alt
                     const lineTotal = parseFloat(line.cost.totalAmount.amount)
 
                     return (
@@ -119,8 +122,8 @@ export default function CartPage() {
                           {/* Product Image */}
                           <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg bg-gray-100">
                             <Image
-                              src={image.src}
-                              alt={image.alt}
+                              src={imageSrc}
+                              alt={imageAlt}
                               fill
                               className="object-cover"
                               sizes="96px"
