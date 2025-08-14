@@ -56,9 +56,9 @@ export const mainNav: NavItem[] = [
         description: 'Delicious recipes for our premium cuts'
       },
       {
-        title: 'Cooking Guides',
-        href: '/blog/cooking-guides',
-        description: 'Expert tips for cooking perfect meat'
+        title: 'Blog',
+        href: '/blog',
+        description: 'Ranch life, cooking tips, and sustainability stories'
       },
       {
         title: 'Meat Storage Tips',
@@ -112,7 +112,7 @@ export const footerNav = {
   resources: [
     { title: 'Recipes', href: '/recipes' },
     { title: 'Blog', href: '/blog' },
-    { title: 'Cooking Guides', href: '/blog/cooking-guides' },
+    { title: 'Grass-Fed Guide', href: '/blog/grass-fed-beef-guide' },
     { title: 'Storage Tips', href: '/blog/storage-tips' },
   ],
   legal: [
