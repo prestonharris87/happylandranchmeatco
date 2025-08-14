@@ -35,12 +35,18 @@ export function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Button asChild size="xl" className="bg-accent-clay hover:bg-opacity-90">
-              <Link href="/shop">Shop Now</Link>
-            </Button>
-            <Button asChild variant="secondary" size="xl" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-brand-forest">
-              <Link href="/about">Learn Our Story</Link>
-            </Button>
+            <Link 
+              href="/shop"
+              className="inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-accent-clay text-white hover:bg-opacity-90 focus:ring-accent-clay h-14 px-8 text-lg"
+            >
+              Shop Now
+            </Link>
+            <Link 
+              href="/about"
+              className="inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-transparent border-2 border-white text-white hover:bg-white hover:text-brand-forest focus:ring-brand-forest h-14 px-8 text-lg"
+            >
+              Learn Our Story
+            </Link>
           </div>
 
           {/* Scroll Indicator */}

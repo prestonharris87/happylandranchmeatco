@@ -54,11 +54,12 @@ export function SeasonalPromo() {
                 </Badge>
               </div>
 
-              <Button asChild size="lg" className="w-fit">
-                <Link href="/shop/collections/grill-box">
-                  Shop the Grill Box
-                </Link>
-              </Button>
+              <Link 
+                href="/shop/collections/grill-box"
+                className="inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-brand-forest text-white hover:bg-opacity-90 focus:ring-brand-forest h-12 px-6 text-base w-fit"
+              >
+                Shop the Grill Box
+              </Link>
             </div>
 
             {/* Image */}

@@ -77,27 +77,30 @@ export function RecipeSpotlight() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild>
-                  <Link href="/recipes/smoky-garlic-ribeye">
-                    View Recipe
-                  </Link>
-                </Button>
-                <Button asChild variant="secondary">
-                  <Link href="/shop/products/grass-fed-ribeye-14oz">
-                    Order This Cut
-                  </Link>
-                </Button>
+                <Link 
+                  href="/recipes/smoky-garlic-ribeye"
+                  className="inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-brand-forest text-white hover:bg-opacity-90 focus:ring-brand-forest h-10 px-4 text-sm"
+                >
+                  View Recipe
+                </Link>
+                <Link 
+                  href="/shop/products/grass-fed-ribeye-14oz"
+                  className="inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-transparent text-brand-forest border-2 border-brand-forest hover:bg-brand-forest hover:text-white focus:ring-brand-forest h-10 px-4 text-sm"
+                >
+                  Order This Cut
+                </Link>
               </div>
             </div>
           </div>
 
           {/* More Recipes Link */}
           <div className="text-center mt-12">
-            <Button asChild variant="outline">
-              <Link href="/recipes">
-                Browse All Recipes
-              </Link>
-            </Button>
+            <Link 
+              href="/recipes"
+              className="inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-gray-500 h-10 px-4 text-sm"
+            >
+              Browse All Recipes
+            </Link>
           </div>
         </div>
       </div>

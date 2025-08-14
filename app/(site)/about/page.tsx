@@ -208,12 +208,18 @@ export default function AboutPage() {
             {/* Call to Action */}
             <div className="text-center">
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button asChild size="lg">
-                  <Link href="/shop">Shop Our Meat</Link>
-                </Button>
-                <Button asChild variant="secondary" size="lg">
-                  <Link href="/about/meet-the-rancher">Meet the Team</Link>
-                </Button>
+                <Link 
+                  href="/shop"
+                  className="inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-brand-forest text-white hover:bg-opacity-90 focus:ring-brand-forest h-12 px-6 text-base"
+                >
+                  Shop Our Meat
+                </Link>
+                <Link 
+                  href="/about/meet-the-rancher"
+                  className="inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-transparent text-brand-forest border-2 border-brand-forest hover:bg-brand-forest hover:text-white focus:ring-brand-forest h-12 px-6 text-base"
+                >
+                  Meet the Team
+                </Link>
               </div>
             </div>
           </div>

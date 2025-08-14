@@ -51,12 +51,18 @@ export function MeetTheRancher() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild>
-                <Link href="/about">Read Our Story</Link>
-              </Button>
-              <Button asChild variant="secondary">
-                <Link href="/about/meet-the-rancher">Meet the Team</Link>
-              </Button>
+              <Link 
+                href="/about"
+                className="inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-brand-forest text-white hover:bg-opacity-90 focus:ring-brand-forest h-10 px-4 text-sm"
+              >
+                Read Our Story
+              </Link>
+              <Link 
+                href="/about/meet-the-rancher"
+                className="inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-transparent text-brand-forest border-2 border-brand-forest hover:bg-brand-forest hover:text-white focus:ring-brand-forest h-10 px-4 text-sm"
+              >
+                Meet the Team
+              </Link>
             </div>
           </div>
         </div>

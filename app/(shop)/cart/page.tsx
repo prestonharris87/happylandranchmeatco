@@ -90,9 +90,12 @@ export default function CartPage() {
               <p className="text-gray-600 mb-8">
                 Looks like you haven't added any delicious ranch-raised meat to your cart yet.
               </p>
-              <Button asChild size="lg">
-                <Link href="/shop">Start Shopping</Link>
-              </Button>
+              <Link 
+                href="/shop"
+                className="inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 bg-brand-forest text-white hover:bg-opacity-90 focus:ring-brand-forest h-12 px-8 text-lg"
+              >
+                Start Shopping
+              </Link>
             </div>
           </div>
         ) : (
