@@ -94,8 +94,34 @@ body {
   @apply animate-pulse bg-gray-200 rounded;
 }
 
-/* Responsive Text */
-@media (max-width: 640px) {
+/* Enhanced Responsive Text */
+@media (max-width: 475px) {
+  .heading-1 {
+    @apply text-2xl leading-tight;
+  }
+  
+  .heading-2 {
+    @apply text-xl leading-tight;
+  }
+  
+  .heading-3 {
+    @apply text-lg leading-tight;
+  }
+  
+  .body-large {
+    @apply text-base;
+  }
+  
+  .container-custom {
+    @apply px-3;
+  }
+  
+  .section-padding {
+    @apply py-8;
+  }
+}
+
+@media (min-width: 475px) and (max-width: 640px) {
   .heading-1 {
     @apply text-3xl;
   }

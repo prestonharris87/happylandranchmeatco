@@ -38,20 +38,20 @@ export function ProductCard({
   return (
     <div className={`product-card ${className}`}>
       <Link href={`/shop/products/${product.handle}`}>
-        <div className="space-y-3">
+        <div className="space-y-2 sm:space-y-3">
           {/* Product Image */}
-          <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-100">
+          <div className="relative aspect-square overflow-hidden rounded-md sm:rounded-lg bg-gray-100">
             <Image
               src={primaryImage.src}
               alt={primaryImage.alt}
               fill
               className="product-card-image object-cover"
               priority={priority}
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              sizes="(max-width: 480px) 100vw, (max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             />
             
             {/* Badges */}
-            <div className="absolute top-2 left-2 space-y-1">
+            <div className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 space-y-1">
               {isOnSale && (
                 <Badge variant="error" size="sm">
                   Sale
@@ -70,7 +70,7 @@ export function ProductCard({
             </div>
             
             {/* Inventory Badge */}
-            <div className="absolute top-2 right-2">
+            <div className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2">
               <InventoryBadge 
                 availableForSale={product.availableForSale}
                 quantityAvailable={defaultVariant?.quantityAvailable}
@@ -79,14 +79,14 @@ export function ProductCard({
           </div>
 
           {/* Product Info */}
-          <div className="space-y-2">
+          <div className="space-y-1.5 sm:space-y-2 px-1 sm:px-0">
             {/* Title */}
-            <h3 className="font-medium text-ink line-clamp-2 group-hover:text-brand-forest transition-colors duration-200">
+            <h3 className="font-medium text-sm sm:text-base text-ink line-clamp-2 group-hover:text-brand-forest transition-colors duration-200 leading-tight">
               {product.title}
             </h3>
             
             {/* Product Type & Tags */}
-            <div className="flex items-center space-x-2 text-sm text-gray-600">
+            <div className="flex items-center space-x-1.5 sm:space-x-2 text-xs sm:text-sm text-gray-600">
               <span>{product.productType}</span>
               {product.metafields.species && (
                 <>
@@ -152,7 +152,7 @@ export function ProductGrid({
   }
 
   return (
-    <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 ${className}`}>
+    <div className={`grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6 ${className}`}>
       {products.map((product, index) => (
         <ProductCard
           key={product.id}

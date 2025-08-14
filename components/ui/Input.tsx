@@ -44,9 +44,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             type={type}
             className={cn(
-              'block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-forest focus:border-brand-forest transition-colors duration-200',
-              leftIcon && 'pl-10',
-              rightIcon && 'pr-10',
+              'block w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-forest focus:border-brand-forest transition-colors duration-200 text-base', // text-base prevents iOS zoom
+              leftIcon && 'pl-9 sm:pl-10',
+              rightIcon && 'pr-9 sm:pr-10',
               error && 'border-red-300 focus:border-red-500 focus:ring-red-500',
               className
             )}

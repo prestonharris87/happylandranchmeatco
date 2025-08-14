@@ -56,32 +56,32 @@ export function Header() {
         }`}
       >
         <div className="container-custom">
-          <div className="flex h-16 items-center justify-between">
+          <div className="flex h-14 sm:h-16 items-center justify-between">
             {/* Mobile Menu Button */}
             <div className="flex items-center lg:hidden">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsMobileMenuOpen(true)}
-                className="p-2"
+                className="p-1.5 sm:p-2 -ml-1.5"
                 aria-label="Open menu"
               >
-                <Menu className="h-6 w-6" />
+                <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
               </Button>
             </div>
 
             {/* Logo */}
-            <div className="flex items-center">
+            <div className="flex items-center flex-1 lg:flex-none justify-center lg:justify-start">
               <Link href="/" className="flex items-center space-x-2">
                 <Image
                   src="/logo.png"
                   alt={siteConfig.name}
-                  width={40}
-                  height={40}
-                  className="h-10 w-auto"
+                  width={32}
+                  height={32}
+                  className="h-8 sm:h-10 w-auto"
                 />
                 <div className="hidden sm:block">
-                  <span className="text-xl font-serif font-bold text-brand-forest">
+                  <span className="text-lg sm:text-xl font-serif font-bold text-brand-forest">
                     {siteConfig.name}
                   </span>
                 </div>
@@ -94,25 +94,25 @@ export function Header() {
             </nav>
 
             {/* Right Actions */}
-            <div className="flex items-center space-x-2">
-              {/* Search */}
+            <div className="flex items-center space-x-1 sm:space-x-2">
+              {/* Search - Hidden on very small screens */}
               <Button
                 variant="ghost"
                 size="sm"
-                className="p-2"
+                className="p-1.5 sm:p-2 hidden xs:flex"
                 aria-label="Search"
               >
-                <Search className="h-5 w-5" />
+                <Search className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
 
-              {/* Account */}
+              {/* Account - Hidden on small screens */}
               <Button
                 variant="ghost"
                 size="sm"
-                className="p-2"
+                className="p-1.5 sm:p-2 hidden sm:flex"
                 aria-label="Account"
               >
-                <User className="h-5 w-5" />
+                <User className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
 
               {/* Cart */}
@@ -120,12 +120,12 @@ export function Header() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsCartOpen(true)}
-                className="relative p-2"
+                className="relative p-1.5 sm:p-2"
                 aria-label={`Cart with ${totalQuantity} items`}
               >
-                <ShoppingBag className="h-5 w-5" />
+                <ShoppingBag className="h-5 w-5 sm:h-6 sm:w-6" />
                 {totalQuantity > 0 && (
-                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent-clay text-xs font-medium text-white">
+                  <span className="absolute -right-0.5 sm:-right-1 -top-0.5 sm:-top-1 flex h-4 w-4 sm:h-5 sm:w-5 items-center justify-center rounded-full bg-accent-clay text-xs font-medium text-white">
                     {totalQuantity > 9 ? '9+' : totalQuantity}
                   </span>
                 )}

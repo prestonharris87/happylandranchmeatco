@@ -59,30 +59,30 @@ export function EmailCapture() {
 
       {/* Content */}
       <div className="relative z-10 container-custom">
-        <div className="max-w-2xl mx-auto text-center text-white">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
+        <div className="max-w-2xl mx-auto text-center text-white px-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold mb-3 sm:mb-4">
             Join the Happyland Herd
           </h2>
           
-          <p className="text-xl mb-8 text-white text-opacity-90">
+          <p className="text-lg sm:text-xl mb-6 sm:mb-8 text-white text-opacity-90">
             Get exclusive ranch updates, seasonal specials, and mouthwatering recipes 
             delivered straight to your inbox.
           </p>
 
           <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Input
                 type="email"
                 placeholder="Enter your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-white border-white text-ink placeholder-gray-500"
+                className="flex-1 bg-white border-white text-ink placeholder-gray-500 h-12 sm:h-auto"
                 disabled={isLoading}
               />
               <Button
                 type="submit"
                 loading={isLoading}
-                className="bg-accent-clay hover:bg-opacity-90 whitespace-nowrap"
+                className="bg-accent-clay hover:bg-opacity-90 whitespace-nowrap h-12 px-6 sm:px-8 text-base sm:text-lg"
                 size="lg"
               >
                 Sign Me Up
